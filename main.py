@@ -1,7 +1,7 @@
 password = "something"
 text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
 
-#funny logical site effect - if text binary and password binary the same - nothing happends
+#funny logical side effect - if text binary and password binary the same - nothing happends
 text_binary = ''.join(format(ord(x), 'b') for x in text)
 password_binary = ''.join(format(ord(x), 'b') for x in password)
 
