@@ -1,53 +1,53 @@
-password = "test"
-text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr";
+password = "something"
+text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
 
-#todo: add a good random binary number generator
-passwordBinary = ''.join(format(ord(x), 'b') for x in password)
-textBinary = ''.join(format(ord(x), 'b') for x in text)
-encryptedText = ''
-textBinaryEnc = ''
+#funny logical site effect - if text binary and password binary the same - nothing happends
+text_binary = ''.join(format(ord(x), 'b') for x in text)
+password_binary = ''.join(format(ord(x), 'b') for x in password)
 
+text_binary_enc = ''
 
-def bitShiftEnc(passwordBit, textBinaryString):
-    if passwordBit == 1:
-        textBinaryString = textBinaryString[1:int(len(textBinaryString))] + textBinaryString[:1]
+def bit_shift_enc(password_bit, text_binary_string):
+    if password_bit == 1:
+        text_binary_string = text_binary_string[1:int(len(text_binary_string))] + text_binary_string[:1]
     else:
-        textBinaryString = textBinaryString[:1] + textBinaryString[1:len(textBinary)]
-    return textBinaryString
+        text_binary_string = text_binary_string[:1] + text_binary_string[1:len(text_binary)]
+    return text_binary_string
 
 
-def bitShiftDec(passwordBit, textBinaryString):
-    if passwordBit == 0:
-        textBinaryString = textBinaryString[1:len(textBinaryString)] + textBinaryString[:1]
+def bit_shift_dec(password_bit, text_binary_string):
+    if password_bit == 0:
+        text_binary_string = text_binary_string[1:len(text_binary_string)] + text_binary_string[:1]
     else:
-        textBinaryString = textBinaryString[:1] + textBinaryString[1:len(textBinary)]
-    return textBinaryString
+        text_binary_string = text_binary_string[:1] + text_binary_string[1:len(text_binary)]
+    return text_binary_string
 
-print(textBinary)
+
+print(text_binary)
 
 ##this is the encryption part
 ii = 0
-while ii < len(passwordBinary):
+while ii < len(password_binary):
     i = 0
-    while i < len(textBinary):
-        textBinaryEnc = textBinaryEnc + str(int(passwordBinary[ii]) ^ int(textBinary[i]))
+    while i < len(text_binary):
+        text_binary_enc = text_binary_enc + str(int(password_binary[ii]) ^ int(text_binary[i]))
         i = i + 1
-    textBinary = bitShiftEnc(passwordBinary[ii], textBinaryEnc)
-    textBinaryEnc = ""
+    text_binary = bit_shift_enc(password_binary[ii], text_binary_enc)
+    text_binary_enc = ""
     ii = ii + 1
 
-print(textBinary)
+print(text_binary)
 
 ##this is the decryption part
 ii = 0
-while ii < len(passwordBinary):
+while ii < len(password_binary):
     i = 0
-    textBinary = bitShiftDec(passwordBinary[ii], textBinary)
-    while i < len(textBinary):
-        textBinaryEnc = textBinaryEnc + str(int(passwordBinary[ii]) ^ int(textBinary[i]))
+    text_binary = bit_shift_dec(password_binary[ii], text_binary)
+    while i < len(text_binary):
+        text_binary_enc = text_binary_enc + str(int(password_binary[ii]) ^ int(text_binary[i]))
         i = i + 1
-    textBinary = textBinaryEnc
-    textBinaryEnc = ""
+    text_binary = text_binary_enc
+    text_binary_enc = ""
     ii = ii + 1
 
-print(textBinary)
+print(text_binary)
